@@ -1,0 +1,379 @@
+@import "variables";
+@import "components/color-variables";
+@import "components/color-classes";
+@import "components/variables";
+
+html,
+body {
+    font-family: 'Muli', sans-serif;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-size: 100%;
+}
+
+.color-primary {
+    color: var(--color-primary-color);
+}
+.color-secondary {
+    color: #cccccc;
+}
+
+.loaded {
+    #loader-wrapper {
+
+        .loading-icon {
+            display: none;
+        }
+
+        .loader-section {
+            transition: all ease-out 0.8s;
+
+            &.section-left {
+                transform: translateX(-100%);
+            }
+            &.section-right {
+                transform: translateX(100%);
+            }
+        }
+    }
+}
+
+#loader-wrapper {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 10;
+    background-color: transparent;
+
+    .spinner-white-only {
+        border-color: white;
+    }
+
+    .loader-section {
+        height: 100%;
+        width: 50%;
+        z-index: 11;
+        background-color: var(--color-primary-color);
+
+        &.section-left {
+            float: left;
+        }
+        &.section-right {
+            float: right;
+        }
+    }
+
+    .loading-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        z-index: 12;
+
+        .bracket {
+            display: inline-block;
+            color: white;
+            font-size: 5rem;
+            padding-left: 10px;
+            font-weight: 700;
+
+            animation-name: pulse-loading-brackets;
+            animation-duration: 1.3s; 
+            animation-timing-function: ease-out; 
+            animation-delay: 0s;
+            animation-direction: alternate;
+            animation-iteration-count: infinite;
+            animation-fill-mode: none;
+            animation-play-state: running; 
+
+            &:first-child {
+                padding-right: 10px;
+                animation-delay: 1.3s;
+            }
+        }
+    }
+}
+
+.intro {
+    height: 100%;
+    width: calc(100% - 100px);
+    margin-left: 100px;
+    background-image: url(/img/wallpaper/photo-1454165804606-c3d57bc86b40.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &::before {
+        content: "";
+        display: block;
+        background-color: rgba(0,0,0,0.5);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 1;
+    }
+
+    .container {
+        position: relative;
+        z-index: 2;
+        height: calc(100% - 40px);
+        width: 100%;
+
+        .info {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 100%;
+
+            .intro-message {
+                color: white;
+                font-size: 5rem;
+                padding: 15px;
+                
+                div,
+                p {
+                    margin: 0;
+                    line-height: 5rem;
+                }
+
+                .footer {
+                    font-size: 1rem;
+                    color: rgba($color: white, $alpha: 0.7);
+                }
+
+                div,
+                p,
+                .footer {
+                    transform: translateX(-100px);
+                    opacity: 0;
+                    
+                    animation-name: slide-in-left;
+                    animation-duration: 1.3s; 
+                    animation-timing-function: ease-out; 
+                    animation-delay: 0s;
+                    animation-direction: alternate;
+                    animation-fill-mode: forwards;
+                }
+            }
+            
+            @media #{$small-and-down} {
+                .intro-message {
+                    font-size: 2.5rem;
+
+                    div,
+                    p {
+                        margin: 0;
+                        line-height: 2.5rem;
+                    }
+
+                    .footer {
+                        font-size: 0.8rem;
+                        color: rgba($color: white, $alpha: 0.7);
+                    }
+                }
+            }
+            @media #{$medium-and-up} {
+                .intro-message {
+                    font-size: 4rem;
+
+                    div,
+                    p {
+                        line-height: 4rem;
+                    }
+
+                    .footer {
+                        font-size: 0.9rem;
+                        color: rgba($color: white, $alpha: 0.7);
+                    }
+                }
+            }
+            @media #{$large-and-up} {
+                .intro-message {
+                    font-size: 5rem;
+
+                    div,
+                    p {
+                        line-height: 5rem;
+                    }
+
+                    .footer {
+                        font-size: 1rem;
+                        color: rgba($color: white, $alpha: 0.7);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.side-panel {
+    z-index: 3;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100px;
+    background-color: var(--color-secondary-color);
+
+    .profile-img {
+        height: auto;
+        width: calc(100% - 20px);
+        margin: 10px;
+        border-radius: 3px;
+    }
+
+    .line {
+        width: 100%;
+        height: 1px;
+        background-color: white;
+        opacity: 0.3;
+        transform: translateY(-5px);
+    }
+
+    .nav {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        transform: translateY(-50%);
+
+        a {
+            position: relative;
+            display: block;
+            color: white;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            height: 56px;
+            background-color: var(--color-secondary-color);
+            transition: all ease 0.3s;
+
+            &:first-child {
+                border-top: 1px solid rgba(255,255,255,0.3);
+            }
+
+            &:hover {
+                opacity: 1;
+                background-color: var(--color-primary-color);
+
+                span {
+                    display: inline-block;
+                }
+
+                .nav-icon {
+                    transform: translate(50%, -50%);
+                    border-radius: 0px 25px 25px 0px;
+
+                    i {
+                        font-size: 25px;
+                    }
+                }
+            }
+
+            span {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                display: none;
+            }
+
+            .nav-icon {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                height: 100%;
+                width: 100%;
+                background-color: var(--color-secondary-color);
+                transition: all ease-out 0.3s;
+
+                i {
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                }
+            }
+        }
+    }
+
+    .social {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        padding-bottom: 50px;
+
+        a {
+            display: block;
+            margin: 10px 0;
+            color: white;
+            opacity: 0.3;
+            cursor: pointer;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+@media #{$medium-and-down} {
+    .intro {
+        width: 100%;
+        margin-left: 0;
+    }
+    .side-panel {
+        left: 100%;
+    }
+}
+
+.blink {
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+}
+
+@keyframes pulse-loading-brackets {
+    0%   {
+        transform: scale(0.5);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-left {
+    0%   {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+.anim-delay-1 {
+    animation-delay: 0.3s!important;
+}
+.anim-delay-2 {
+    animation-delay: 0.3s * 2!important;
+}
+.anim-delay-3 {
+    animation-delay: 0.3s * 3!important;
+}
+.play {
+    animation-play-state: running;
+}
